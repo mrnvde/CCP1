@@ -1,0 +1,152 @@
+body{
+	font-size: 20px;
+	font-family: Arial;
+	text-align: center;
+	width: 100%;
+}
+
+header{
+	background-color: gray;
+	width: 100%;
+	display: inline-block;
+	text-align: center;
+}
+
+#header{
+	background-color: lightgray;
+	padding: 30px;
+	margin-left: 20px;
+	margin-right: 20px;
+	justify-content: space-between;
+	align-items: center;
+	width: auto;
+	display: flex;
+}
+
+#btnDeco{
+	width: 40px;
+	height: 40px;
+}
+
+#lecteurSearchB{
+	width: 100%;
+}
+
+#logo{
+	margin-top: 20px;
+	width: 90px;
+	height: 90px;
+}
+
+#loginRegister{
+	padding: 20px;
+	margin-top: 40px;
+	margin-left: 10%;
+	margin-right: 10%;
+	text-align: center;
+}
+
+#connexion, #inscription{
+	width: 260px;
+	height: auto;
+	background-color: lightgray;
+	display: inline-grid;
+	padding: 40px;
+	margin: 20px;
+}
+
+input, button{
+	text-align: center;
+	width: 200px;
+	padding: 12px;
+	margin: 2px;
+}
+
+label{
+	font-weight: bold;
+}
+
+audio{
+	width: 90%;
+}
+
+.searchBar{
+	width: 60%;
+}
+
+.icon{
+	margin-right: 20px;
+}
+
+.btnRetour{
+	float: left;
+	width: 40px;
+	height: 40px;
+}
+
+.titre{
+	font-size: 28px;
+	padding: 8px;
+	background-color: #AAA;
+	margin-bottom: 20px;
+	font-weight: bold;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#playlist, #favoris{
+	padding: 20px;
+	width: 40%;
+	background-color: lightgray;
+	display: inline-grid;
+}
+
+.blocPlaylist, .blocFavoris1, .blocFavoris {
+	font-weight: bold;
+	margin: 4px;
+	text-align: left;
+	align-items: center;
+	display: inline-flex;
+}
+#playlistFavoris{
+	padding: 20px;
+	margin-top: 40px;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+#ongletFavoris, #ongletPlaylist, #ongletTitre{
+	background-color: lightgray;
+	padding: 20px;
+	margin-top: 40px;
+	text-align: center;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+.blocFavoris{
+	width: 48%;
+}
+
+.iconLike{
+	margin: 2px;
+	width: 26px;
+	height: 26px;
+}
+
+
+
+/*#imgProfil{
+	width: 80px;
+	height: 80px;
+}
+
+#profil{
+	padding: 20px;
+	margin-top: 40px;
+	text-align: center;
+	background-color: yellow;
+	margin-left: 10%;
+	margin-right: 10%;
+}*/
