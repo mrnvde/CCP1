@@ -1,8 +1,8 @@
 body{
-	font-size: 20px;
+	font-size: 16px;
 	font-family: Arial;
 	text-align: center;
-	width: 100%;
+	width: auto;
 }
 
 header{
@@ -55,6 +55,10 @@ header{
 	margin: 20px;
 }
 
+#mdp6{
+	font-size: 10px;
+}
+
 input, button{
 	text-align: center;
 	width: 200px;
@@ -71,21 +75,26 @@ audio{
 }
 
 .searchBar{
+	border-radius: 10px;
 	width: 60%;
 }
 
 .icon{
+	width: 40px;
+	height: 40px;
 	margin-right: 20px;
 }
 
 .btnRetour{
+	border-radius: 10px;
 	float: left;
 	width: 40px;
 	height: 40px;
 }
 
-.titre{
-	font-size: 28px;
+.titre, .titrePlaylist, .titreFavoris{
+	border-radius: 10px;
+	font-size: 20px;
 	padding: 8px;
 	background-color: #AAA;
 	margin-bottom: 20px;
@@ -95,58 +104,77 @@ audio{
     align-items: center;
 }
 
-#playlist, #favoris{
-	padding: 20px;
-	width: 40%;
-	background-color: lightgray;
-	display: inline-grid;
+#playlistTitreFavoris{
+	margin-top: 20px;
+	display: flex;
 }
 
-.blocPlaylist, .blocFavoris1, .blocFavoris {
-	font-weight: bold;
-	margin: 4px;
-	text-align: left;
-	align-items: center;
-	display: inline-flex;
-}
-#playlistFavoris{
-	padding: 20px;
-	margin-top: 40px;
-	margin-left: 10%;
-	margin-right: 10%;
+#ongletPlaylist, #ongletFavoris {
+	background-color: #CCC;
+	width: 20%;
 }
 
-#ongletFavoris, #ongletPlaylist, #ongletTitre{
-	background-color: lightgray;
-	padding: 20px;
-	margin-top: 40px;
-	text-align: center;
-	margin-left: 10%;
-	margin-right: 10%;
+#ongletTitre {
+	background-color: #DDD;
+	width: 60%;
 }
 
-.blocFavoris{
-	width: 48%;
+#ongletPlaylist, #ongletTitre, #ongletFavoris {
+	padding: 6px;
+	margin: 3px;
+	border-radius: 10px;
 }
 
-.iconLike{
+.blocPlaylist, .blocTitre, .blocFavoris1 {
+	display: flex;
+	margin: 6px;
+}
+
+.blocTitre{
+	justify-content: space-between;
+}
+
+.iconLike, .iconDislike, .iconAddPlaylist{
 	margin: 2px;
 	width: 26px;
 	height: 26px;
 }
 
 
-
-/*#imgProfil{
+#imgProfil{
 	width: 80px;
 	height: 80px;
 }
 
-#profil{
-	padding: 20px;
-	margin-top: 40px;
-	text-align: center;
-	background-color: yellow;
-	margin-left: 10%;
-	margin-right: 10%;
-}*/
+@media screen and (max-width: 800px){
+	body{
+		font-size: 12px;
+	}
+	.iconLike, .iconDislike, .iconAddPlaylist{
+		margin: 0px;
+		width: 16px;
+		height: 16px;
+	}
+	.icon{
+		width: 20px;
+		height: 20px;
+		margin-right: 0px;
+	}
+	#playlistTitreFavoris{
+		margin-top: 20px;
+		flex-direction: column;
+	}
+	.blocPlaylist, .blocTitre, .blocFavoris1 {
+		flex-direction: row;
+		display: ;
+		margin: 0px;
+	}
+	#ongletPlaylist, #ongletFavoris {
+		width: 30%;
+	}
+
+	#ongletTitre {
+		width: 50%;
+	}
+}
+}
