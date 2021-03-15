@@ -375,19 +375,18 @@ $(document).ready(() => {
     $('.iconAddPlaylist').click(addPlaylist)
     $('#afficheFavoris').click(affichePageFavoris)
     $('#btnFavorisRetour').click(quitteFavoris)
-    $('#btnDeco').click(function (event) {
-            event.preventDefault()
-            sessionStorage.removeItem('session')
-            $('#playlistTitreFavoris').hide()
-            $('#header').hide()
-            $('#pageAccueil').show()
-        })
-
     $('.prev-track').on('click', prevTrack)
     $('.playpause-track').on('click', playpauseTrack)
     $('.next-track').on('click', nextTrack)
     $('.volume_slider').on('change', setVolume)
     $('.seek_slider').on('change', seekTo)
+    $('#btnDeco').click(function (event) {
+        event.preventDefault()
+        sessionStorage.removeItem('session')
+        $('#playlistTitreFavoris').hide()
+        $('#header').hide()
+        $('#pageAccueil').show()
+    })
 
 	function register(event) {
             event.preventDefault()
@@ -545,7 +544,6 @@ let updateTimer;
 
 let curr_track = document.createElement('audio');
 
-// Define the tracks that have to be played
 musiques = JSON.parse(localStorage.getItem('musiques'))
 
 function loadTrack(track_index) {
@@ -569,7 +567,6 @@ function resetValues() {
   seek_slider.value = 0;
 }
 
-// Load the first track in the tracklist
 loadTrack(track_index);
 
 function playpauseTrack() {
@@ -636,81 +633,6 @@ function seekUpdate() {
     total_duration.textContent = durationMinutes + ":" + durationSeconds;
   }
 } 
-
- //    function resizePage(){
-	//     var Largeur = $(window).width();
-	//     if(Largeur < 800) {
-	//         $('#playlistTitreFavoris').html(`
-	// 			<div id="ongletPlaylist">
-	// 				<div class="titrePlaylist">
-	// 					<span>Playlist</span>
-	// 				</div>
-
-	// 				<div class="blocPlaylist">
-	// 					<img src="iconPlaylist.png" class="icon">
-
-	// 					<div>
-	// 						<span class="nomPlaylist">Pour faire du sport</span><br>
-	// 					</div>
-	// 				</div>
-
-	// 				<div class="blocPlaylist">
-	// 					<img src="iconPlaylist.png" class="icon">
-
-	// 					<div>
-	// 						<span class="nomPlaylist">Au soleil</span><br>
-	// 					</div>
-	// 				</div>
-
-	// 				<div class="blocPlaylist">
-	// 					<img src="iconPlaylist.png" class="icon">
-
-	// 					<div>
-	// 						<span class="nomPlaylist">Détente</span><br>
-	// 					</div>
-	// 				</div>
-
-	// 				<div class="blocPlaylist">
-	// 					<img src="iconPlaylist.png" class="icon">
-
-	// 					<div>
-	// 						<span class="nomPlaylist">Années 80/90</span><br>
-	// 					</div>
-	// 				</div>
-
-	// 				<div class="blocPlaylist">
-	// 					<img src="iconPlaylist.png" class="icon">
-
-	// 					<div>
-	// 						<span class="nomPlaylist">La fête</span><br>
-	// 					</div>
-	// 				</div>
-
-	// 				<div class="blocPlaylist">
-	// 					<img src="iconPlaylist.png" class="icon">
-
-	// 					<div>
-	// 						<span class="nomPlaylist">En boucle</span><br>
-	// 					</div>
-	// 				</div>
-	// 			</div>
-
-	// 			<div id="ongletFavoris">
-	// 				<div class="titreFavoris">
-	// 					<span>Favoris</span>
-	// 				</div>
-	// 				<div class="blocFavoris1"></div>
-	// 			</div>
-
-	// 			<div id="ongletTitre">
-	// 				<div class="titre">
-	// 					<span id="nomPlaylist">Tous les titres</span>
-	// 					<div class="blocTitre"></div>
-	// 				</div>
-	// 			</div>
-	//         	`)
-	//     }
-	// }
 
 	function uuidv4() {
             return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {

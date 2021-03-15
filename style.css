@@ -17,17 +17,16 @@ body{
 }
 
 .player, .details {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: center;
+	  display: flex;
+	  align-items: center;
+	  flex-direction: column;
+	  justify-content: center;
 }
 
 .track-art {
   margin: 6px;
   height: 150px;
   width: 150px;
-  background-image: url("https://images.pexels.com/photos/262034/pexels-photo-262034.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
   background-size: cover;
   border-radius: 100%;
 }
@@ -96,10 +95,12 @@ body{
 }
 
 .seek_slider {
-  width: 60%;
+	border-radius: 10px;
+  	width: 60%;
 }
 
 .volume_slider {
+	border-radius: 10px;
   width: 30%;
 }
 
@@ -116,6 +117,10 @@ i.fa-play-circle, i.fa-pause-circle, i.fa-step-forward, i.fa-step-backward {
 	height: 60px;
 	position: absolute;
 	padding: 10px;
+}
+
+#pageAccueil{
+	text-align: center;
 }
 
 #logo{
@@ -184,7 +189,7 @@ audio{
 	height: 40px;
 }
 
-.titresFavoris, .titresPlaylist, .titresTitres{
+.titresFavoris, .titresPlaylist, .titresTitres, .titrePageFavoris{
 	border-radius: 10px;
 	font-size: 20px;
 	padding: 8px;
@@ -208,7 +213,7 @@ audio{
 }
 
 #ongletTitre {
-	background-color: rgb(52 52 52);
+	background-color: rgb(64 64 64);
 	width: 60%;
 }
 
@@ -229,6 +234,7 @@ audio{
 	float: left;
 	width: 48%;
 }
+
 a{
 	color: rgb(179 179 179);
 	text-decoration: none;
@@ -240,18 +246,23 @@ a{
 }
 
 #pageFavoris{
+	background-color: rgb(64 64 64);
 	margin-top: 20px;
 	margin: 40px;
+	width: auto;
 	justify-content: space-between;
+	align-items: center;
 }
 
 .blocFavoris2{
-	justify-content: space-around;
-	float: left;
-	width: 29%;
-	display: flex;
-	margin: 6px;
+	text-align: center;
+	background-color: rgb(64 64 64);
+	justify-content: space-between;
 	align-items: center;
+	display: flex;
+	float: left;
+	margin: 6px;
+	width: 48%;
 }
 
 @media screen and (max-width: 1200px){
