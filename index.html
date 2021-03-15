@@ -5,6 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
@@ -43,25 +44,41 @@
 	<h5>Vous devez obligatoirement posséder un compte pour accéder à l'interface</h5>
 </div>
 
-	<div id="header">
-		<div id="lecteurSearchB">
-			<div id="lecteur"></div>
-			<div>
-				<input type="search" class="searchBar" placeholder="Rechercher un artiste ou une musique">
-				<button class="btnSearch">Rechercher</button><br>
-			</div>
-		</div>
-
+<div id="header">
 		<a href=""><img src="btnOff.png" id="btnDeco"></a><br>
-		<a href="" style="display: none"><img src="imgProfil.jpg" id="imgProfil"></a>
-	</div>
 
+	<div class="player">
+	    <div class="details">
+	      <div class="now-playing">PLAYING x OF y</div>
+	      <div class="track-art"></div>
+	      <div class="track-name">Track Name</div>
+	      <div class="track-artist">Track Artist</div>
+	    </div>
+	    <div class="buttons">
+	      <div class="prev-track"><i class="fa fa-step-backward fa-2x"></i></div>
+	      <div class="playpause-track"><i class="fa fa-play-circle fa-5x"></i></div>
+	      <div class="next-track"><i class="fa fa-step-forward fa-2x"></i></div>
+	    </div>
+	    <div class="slider_container">
+	      <div class="current-time">00:00</div>
+	      <input type="range" min="1" max="100" value="0" class="seek_slider">
+	      <div class="total-duration">00:00</div>
+	    </div>
+	    <div class="slider_container">
+	      <i class="fa fa-volume-down"></i>
+	      <input type="range" min="1" max="100" value="99" class="volume_slider">
+	      <i class="fa fa-volume-up"></i>
+	    </div>
+	</div> 
+<!-- 
+		<input type="search" class="searchBar" placeholder="Rechercher un artiste ou une musique">
+		<button class="btnSearch">Rechercher</button><br> -->
+</div>
 <div id="playlistTitreFavoris">
 	<div id="ongletPlaylist">
-			<div class="titrePlaylist">
-				<span>Playlist</span>
+			<div class="titresPlaylist">
+				<span>Playlists</span>
 			</div>
-
 			<div class="blocPlaylist">
 				<img src="iconPlaylist.png" class="icon">
 
@@ -69,7 +86,6 @@
 					<span class="nomPlaylist">Pour faire du sport</span><br>
 				</div>
 			</div>
-
 			<div class="blocPlaylist">
 				<img src="iconPlaylist.png" class="icon">
 
@@ -77,7 +93,6 @@
 					<span class="nomPlaylist">Au soleil</span><br>
 				</div>
 			</div>
-
 			<div class="blocPlaylist">
 				<img src="iconPlaylist.png" class="icon">
 
@@ -85,7 +100,6 @@
 					<span class="nomPlaylist">Détente</span><br>
 				</div>
 			</div>
-
 			<div class="blocPlaylist">
 				<img src="iconPlaylist.png" class="icon">
 
@@ -93,7 +107,6 @@
 					<span class="nomPlaylist">Années 80/90</span><br>
 				</div>
 			</div>
-
 			<div class="blocPlaylist">
 				<img src="iconPlaylist.png" class="icon">
 
@@ -101,7 +114,6 @@
 					<span class="nomPlaylist">La fête</span><br>
 				</div>
 			</div>
-
 			<div class="blocPlaylist">
 				<img src="iconPlaylist.png" class="icon">
 
@@ -112,170 +124,27 @@
 	</div>
 
 	<div id="ongletTitre">
-		<div class="titre">
-			<span id="nomPlaylist">Tous les titres</span>
-			<div class="blocTitre"></div>
+		<div class="titresTitres">
+			<span>Tous les titres</span>
 		</div>
+		<div class="blocTitre"></div>
 	</div>
 
 	<div id="ongletFavoris">
-		<div class="titreFavoris">
-			<span>Favoris</span>
+		<div class="titresFavoris">
+			<a href="#"><span id="afficheFavoris">Favoris</span></a>	
 		</div>
 		<div class="blocFavoris1"></div>
 	</div>
 </div>
 
-	<div id="pageFavoris" style="display: none;">
-		<div class="titre">
-			<a href="#"><img src="retour.png" class="btnRetour"></a>
-			<span>Mes favoris</span>
-		</div>
-
-		<div class="blocFavoris">
-				<img src="iconFavoris.png" class="icon">
-
-				<div>
-					<span class="nomArtiste"></span><br>
-					<span class="nomMusique"></span>
-				</div>
-
-				<a href="#"><img src="like.png" class="iconLike"></a>
-				<a href="#"><img src="addPlaylist.png" class="iconLike"></a>
-		</div>
-
-		<div class="blocFavoris">
-				<img src="iconFavoris.png" class="icon">
-
-				<div>
-					<span class="nomArtiste">Nom de l'artiste</span><br>
-					<span class="nomMusique">Nom de la musique</span>
-				</div>
-
-				<a href="#"><img src="like.png" class="iconLike"></a>
-				<a href="#"><img src="addPlaylist.png" class="iconLike"></a>
-		</div>
-
-		<div class="blocFavoris">
-				<img src="iconFavoris.png" class="icon">
-
-				<div>
-					<span class="nomArtiste">Nom de l'artiste</span><br>
-					<span class="nomMusique">Nom de la musique</span>
-				</div>
-
-				<a href="#"><img src="like.png" class="iconLike"></a>
-				<a href="#"><img src="addPlaylist.png" class="iconLike"></a>
-		</div>
-
-		<div class="blocFavoris">
-				<img src="iconFavoris.png" class="icon">
-
-				<div>
-					<span class="nomArtiste">Nom de l'artiste</span><br>
-					<span class="nomMusique">Nom de la musique</span>
-				</div>
-
-				<a href="#"><img src="like.png" class="iconLike"></a>
-				<a href="#"><img src="addPlaylist.png" class="iconLike"></a>
-		</div>
-
-		<div class="blocFavoris">
-				<img src="iconFavoris.png" class="icon">
-
-				<div>
-					<span class="nomArtiste">Nom de l'artiste</span><br>
-					<span class="nomMusique">Nom de la musique</span>
-				</div>
-
-				<a href="#"><img src="like.png" class="iconLike"></a>
-				<a href="#"><img src="addPlaylist.png" class="iconLike"></a>
-		</div>
-
-		<div class="blocFavoris">
-				<img src="iconFavoris.png" class="icon">
-
-				<div>
-					<span class="nomArtiste">Nom de l'artiste</span><br>
-					<span class="nomMusique">Nom de la musique</span>
-				</div>
-
-				<a href="#"><img src="like.png" class="iconLike"></a>
-				<a href="#"><img src="addPlaylist.png" class="iconLike"></a>
-		</div>
-
-		<div class="blocFavoris">
-				<img src="iconFavoris.png" class="icon">
-
-				<div>
-					<span class="nomArtiste">Nom de l'artiste</span><br>
-					<span class="nomMusique">Nom de la musique</span>
-				</div>
-
-				<a href="#"><img src="like.png" class="iconLike"></a>
-				<a href="#"><img src="addPlaylist.png" class="iconLike"></a>
-		</div>
-
-		<div class="blocFavoris">
-				<img src="iconFavoris.png" class="icon">
-
-				<div>
-					<span class="nomArtiste">Nom de l'artiste</span><br>
-					<span class="nomMusique">Nom de la musique</span>
-				</div>
-
-				<a href="#"><img src="like.png" class="iconLike"></a>
-				<a href="#"><img src="addPlaylist.png" class="iconLike"></a>
-		</div>
-
-		<div class="blocFavoris">
-				<img src="iconFavoris.png" class="icon">
-
-				<div>
-					<span class="nomArtiste">Nom de l'artiste</span><br>
-					<span class="nomMusique">Nom de la musique</span>
-				</div>
-
-				<a href="#"><img src="like.png" class="iconLike"></a>
-				<a href="#"><img src="addPlaylist.png" class="iconLike"></a>
-		</div>
-
-		<div class="blocFavoris">
-				<img src="iconFavoris.png" class="icon">
-
-				<div>
-					<span class="nomArtiste">Nom de l'artiste</span><br>
-					<span class="nomMusique">Nom de la musique</span>
-				</div>
-
-				<a href="#"><img src="like.png" class="iconLike"></a>
-				<a href="#"><img src="addPlaylist.png" class="iconLike"></a>
-		</div>
-
-		<div class="blocFavoris">
-				<img src="iconFavoris.png" class="icon">
-
-				<div>
-					<span class="nomArtiste">Nom de l'artiste</span><br>
-					<span class="nomMusique">Nom de la musique</span>
-				</div>
-
-				<a href="#"><img src="like.png" class="iconLike"></a>
-				<a href="#"><img src="addPlaylist.png" class="iconLike"></a>
-		</div>
-
-		<div class="blocFavoris">
-				<img src="iconFavoris.png" class="icon">
-
-				<div>
-					<span class="nomArtiste">Nom de l'artiste</span><br>
-					<span class="nomMusique">Nom de la musique</span>
-				</div>
-
-				<a href="#"><img src="like.png" class="iconLike"></a>
-				<a href="#"><img src="addPlaylist.png" class="iconLike"></a>
-		</div>
+<div id="pageFavoris">
+	<div class="titrePageFavoris">
+		<a href="#"><img src="retour.png" id="btnFavorisRetour"></a>
+		<span>Mes favoris</span>
 	</div>
+
+	<div class="blocFavoris2"></div>
 </div>
 
 <div id="pagePlaylist" style="display: none;">
@@ -284,149 +153,7 @@
 			<span id="nomPlaylist">Nom playlist</span>
 		</div>
 
-		<div class="blocFavoris">
-				<img src="iconPlaylist.png" class="icon">
-
-				<div>
-					<span class="nomArtiste">Nom de l'artiste</span><br>
-					<span class="nomMusique">Nom de la musique</span>
-				</div>
-
-				<a href="#"><img src="dislike.png" class="iconLike"></a>
-				<a href="#"><img src="addPlaylist.png" class="iconLike"></a>
-		</div>
-
-		<div class="blocFavoris">
-				<img src="iconPlaylist.png" class="icon">
-
-				<div>
-					<span class="nomArtiste">Nom de l'artiste</span><br>
-					<span class="nomMusique">Nom de la musique</span>
-				</div>
-
-				<a href="#"><img src="dislike.png" class="iconLike"></a>
-				<a href="#"><img src="addPlaylist.png" class="iconLike"></a>
-		</div>
-
-		<div class="blocFavoris">
-				<img src="iconPlaylist.png" class="icon">
-
-				<div>
-					<span class="nomArtiste">Nom de l'artiste</span><br>
-					<span class="nomMusique">Nom de la musique</span>
-				</div>
-
-				<a href="#"><img src="like.png" class="iconLike"></a>
-				<a href="#"><img src="addPlaylist.png" class="iconLike"></a>
-		</div>
-
-		<div class="blocFavoris">
-				<img src="iconPlaylist.png" class="icon">
-
-				<div>
-					<span class="nomArtiste">Nom de l'artiste</span><br>
-					<span class="nomMusique">Nom de la musique</span>
-				</div>
-
-				<a href="#"><img src="dislike.png" class="iconLike"></a>
-				<a href="#"><img src="addPlaylist.png" class="iconLike"></a>
-		</div>
-
-		<div class="blocFavoris">
-				<img src="iconPlaylist.png" class="icon">
-
-				<div>
-					<span class="nomArtiste">Nom de l'artiste</span><br>
-					<span class="nomMusique">Nom de la musique</span>
-				</div>
-
-				<a href="#"><img src="like.png" class="iconLike"></a>
-				<a href="#"><img src="addPlaylist.png" class="iconLike"></a>
-		</div>
-
-		<div class="blocFavoris">
-				<img src="iconPlaylist.png" class="icon">
-
-				<div>
-					<span class="nomArtiste">Nom de l'artiste</span><br>
-					<span class="nomMusique">Nom de la musique</span>
-				</div>
-
-				<a href="#"><img src="like.png" class="iconLike"></a>
-				<a href="#"><img src="addPlaylist.png" class="iconLike"></a>
-		</div>
-
-		<div class="blocFavoris">
-				<img src="iconPlaylist.png" class="icon">
-
-				<div>
-					<span class="nomArtiste">Nom de l'artiste</span><br>
-					<span class="nomMusique">Nom de la musique</span>
-				</div>
-
-				<a href="#"><img src="dislike.png" class="iconLike"></a>
-				<a href="#"><img src="addPlaylist.png" class="iconLike"></a>
-		</div>
-
-		<div class="blocFavoris">
-				<img src="iconPlaylist.png" class="icon">
-
-				<div>
-					<span class="nomArtiste">Nom de l'artiste</span><br>
-					<span class="nomMusique">Nom de la musique</span>
-				</div>
-
-				<a href="#"><img src="dislike.png" class="iconLike"></a>
-				<a href="#"><img src="addPlaylist.png" class="iconLike"></a>
-		</div>
-
-		<div class="blocFavoris">
-				<img src="iconPlaylist.png" class="icon">
-
-				<div>
-					<span class="nomArtiste">Nom de l'artiste</span><br>
-					<span class="nomMusique">Nom de la musique</span>
-				</div>
-
-				<a href="#"><img src="like.png" class="iconLike"></a>
-				<a href="#"><img src="addPlaylist.png" class="iconLike"></a>
-		</div>
-
-		<div class="blocFavoris">
-				<img src="iconPlaylist.png" class="icon">
-
-				<div>
-					<span class="nomArtiste">Nom de l'artiste</span><br>
-					<span class="nomMusique">Nom de la musique</span>
-				</div>
-
-				<a href="#"><img src="dislike.png" class="iconLike"></a>
-				<a href="#"><img src="addPlaylist.png" class="iconLike"></a>
-		</div>
-
-		<div class="blocFavoris">
-				<img src="iconPlaylist.png" class="icon">
-
-				<div>
-					<span class="nomArtiste">Nom de l'artiste</span><br>
-					<span class="nomMusique">Nom de la musique</span>
-				</div>
-
-				<a href="#"><img src="like.png" class="iconLike"></a>
-				<a href="#"><img src="addPlaylist.png" class="iconLike"></a>
-		</div>
-
-		<div class="blocFavoris">
-				<img src="iconPlaylist.png" class="icon">
-
-				<div>
-					<span class="nomArtiste">Nom de l'artiste</span><br>
-					<span class="nomMusique">Nom de la musique</span>
-				</div>
-
-				<a href="#"><img src="like.png" class="iconLike"></a>
-				<a href="#"><img src="addPlaylist.png" class="iconLike"></a>
-		</div>
+		<div class="blocFavoris1"></div>
 </div>
 
 	<script src="mySpotify.js"></script>

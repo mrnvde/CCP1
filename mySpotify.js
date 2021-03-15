@@ -1,9 +1,9 @@
 $(document).ready(() => {
 	// $(window).resize(resizePage)
 	// resizePage()
-
 	$('#playlistTitreFavoris').hide()
     $('#header').hide()
+    $('#pageFavoris').hide() 
 
     var musiques = {
                     "songs":[
@@ -298,7 +298,7 @@ $(document).ready(() => {
         for (; x < musiques.songs.length ; x ++){
             let lesMusiques = musiques.songs[x]
 
-            $('.titre').after(`
+            $('.titresTitres').after(`
                 <div class="blocTitre">
                     <div>
                         <img src="${lesMusiques.image}" class="icon">
@@ -316,6 +316,40 @@ $(document).ready(() => {
                     </div>
                 </div>`)
         }
+    }
+
+    var favorisObj
+    if(!localStorage.getItem('favoris')) {
+    	favorisObj = {
+    		"musiquesFav": []
+    	}
+    } else {
+    	favorisObj = JSON.parse(localStorage.getItem('favoris'))
+
+    	let y = 0
+    	for (; y < favorisObj.musiquesFav.lenght ; y++){
+    		let lesFavoris = favorisObj.musiquesFav[y]
+
+    		$('.blocFavoris1').before(`<div class="blocFavoris1">
+                                 <img src="iconFavoris.png" class="icon">
+                                 <div>
+                                     <span class="nomArtiste">${lesFavoris.artiste}</span><br>
+                                     <span class="nomMusique">${lesFavoris.titre}</span>
+                                 </div>
+                                 </div>`)
+            $('.iconLike').unbind('click', addFavoris)
+	        $('.blocFavoris2').before(`<div class="blocFavoris2">
+                                 <img src="iconFavoris.png" class="icon">
+                                 <div>
+                                     <span class="nomArtiste">${lesFavoris.artiste}</span><br>
+                                     <span class="nomMusique">${lesFavoris.titre}</span>
+                                 </div>
+                                 <div>
+                    			    <a href="#"><img src="like.png" class="iconLike"></a>
+                    			    <a href="#"><img src="removePlaylist.png" class="iconAddPlaylist"></a>
+                   				 </div>
+                                 </div>`)
+    	}
     }
 
     var usersObj
@@ -337,9 +371,10 @@ $(document).ready(() => {
 
     $('#formRegister').submit(register)
     $('#formLogin').submit(login)
-    $('.playLecteur').click(playMusique)
-    $('.iconDislike').click(addFavoris)
+    $('.iconDislike').click(saveFavoris)
     $('.iconAddPlaylist').click(addPlaylist)
+    $('#afficheFavoris').click(affichePageFavoris)
+    $('#btnFavorisRetour').click(quitteFavoris)
     $('#btnDeco').click(function (event) {
             event.preventDefault()
             sessionStorage.removeItem('session')
@@ -347,6 +382,12 @@ $(document).ready(() => {
             $('#header').hide()
             $('#pageAccueil').show()
         })
+
+    $('.prev-track').on('click', prevTrack)
+    $('.playpause-track').on('click', playpauseTrack)
+    $('.next-track').on('click', nextTrack)
+    $('.volume_slider').on('change', setVolume)
+    $('.seek_slider').on('change', seekTo)
 
 	function register(event) {
             event.preventDefault()
@@ -432,51 +473,169 @@ $(document).ready(() => {
                     alert("Il faut créer un compte")
                 }
             }
-        }
+    }
 
-    function addFavoris(event){
-    	event.preventDefault()
+    function saveFavoris(){
+    	var titreFavoris = $('.nomMusiqueTitre').val()
+    	var artisteFavoris = $('.nomArtisteTitre').val()
+    	var srcFavoris = $('.srcMusiqueTitre').val()
 
-        var src = $('.iconDislike').val('dislike.png')
-        var cetArtiste = $('.nomArtisteTitre').val()
-        var cetteMusique = $('.nomMusiqueTitre').val()
-        
-        if (src){
-            $(this).attr('src', 'like.png').removeClass('iconDislike').addClass('iconLike')
-            musiques = JSON.parse(localStorage.getItem('musiques')).songs
-            $('.blocFavoris1').empty()
+    	$(this).attr('src', 'like.png').removeClass('iconDislike').addClass('iconLike')
+
             $('.blocFavoris1').before(`<div class="blocFavoris1">
                                  <img src="iconFavoris.png" class="icon">
                                  <div>
-                                     <span class="nomArtiste">${$(this).val(cetArtiste, musiques.artist)}</span><br>
-                                     <span class="nomMusique">${$(this).val(cetteMusique, musiques.song)}</span>
+                                     <span class="nomArtiste">Nom Artiste</span><br>
+                                     <span class="nomMusique">Nom Musique</span>
                                  </div>
                                  </div>`)
-            $('.iconLike').unbind('click', addFavoris)
-        } else {
-            $('.iconLike').attr('src', 'dislike.png').removeClass('iconLike').addClass('iconDislike')
-        }
+            $('.iconLike').unbind('click')
+	        $('.blocFavoris2').before(`<div class="blocFavoris2">
+                                 <img src="iconFavoris.png" class="icon">
+                                 <div>
+                                     <span class="nomArtiste">Nom Artiste</span><br>
+                                     <span class="nomMusique">Nom Musique</span>
+                                 </div>
+                                 <div>
+                    			    <a href="#"><img src="like.png" class="iconLike"></a>
+                    			    <a href="#"><img src="removePlaylist.png" class="iconAddPlaylist"></a>
+                   				 </div>
+                                 </div>`)
+    	var fav = {
+    		id: "fav_" + uuidv4(),
+    		titre: titreFavoris,
+    		artist: artisteFavoris,
+    		src: srcFavoris
+    	}
+    	favorisObj.musiquesFav.push(fav)
+    	localStorage.setItem('favoris', JSON.stringify(favorisObj))
     }
 
     function addPlaylist(){
             $(this).attr('src', 'addPlaylist.png')
     }
 
-    function playMusique(event){
-        event.preventDefault()
-
-        var musiques = JSON.parse(localStorage.getItem('musiques'))
-        var artisteLecteur = $('.nomArtisteTitre').val()
-        var musiqueLecteur = $('.nomMusiqueTitre').val()
-        var srcLecteur = $('.srcMusiqueTitre').val()
-        
-        $('#lecteur').html(`
-            <span>${$(this).val(artisteLecteur, musiques)}L'artiste -</span>
-            <span>${$(this).val(musiqueLecteur, musiques)} La musique</span>
-            <audio controls src="${$(this).val(srcLecteur, musiques)}" type="mp3">
-            </audio><br><br>`)
-        $('.playLecteur').unbind('click', playMusique)
+    function affichePageFavoris(){
+    	$('#playlistTitreFavoris').hide()
+    	$('#pageFavoris').show()
     }
+
+    function quitteFavoris(){
+    	$('#pageFavoris').hide()
+    	$('#playlistTitreFavoris').show()
+    }
+
+let now_playing = document.querySelector(".now-playing");
+let track_art = document.querySelector(".track-art");
+let track_name = document.querySelector(".track-name");
+let track_artist = document.querySelector(".track-artist");
+
+let playpause_btn = document.querySelector(".playpause-track");
+let next_btn = document.querySelector(".next-track");
+let prev_btn = document.querySelector(".prev-track");
+
+let seek_slider = document.querySelector(".seek_slider");
+let volume_slider = document.querySelector(".volume_slider");
+let curr_time = document.querySelector(".current-time");
+let total_duration = document.querySelector(".total-duration");
+
+let track_index = 0;
+let isPlaying = false;
+let updateTimer;
+
+let curr_track = document.createElement('audio');
+
+// Define the tracks that have to be played
+musiques = JSON.parse(localStorage.getItem('musiques'))
+
+function loadTrack(track_index) {
+  clearInterval(updateTimer);
+  resetValues();
+  curr_track.src = musiques.songs[track_index].song;
+  curr_track.load();
+
+  track_art.style.backgroundImage = "url(" + musiques.songs[track_index].image + ")";
+  track_name.textContent = musiques.songs[track_index].name;
+  track_artist.textContent = musiques.songs[track_index].artist;
+  now_playing.textContent = "PLAYING " + (track_index + 1) + " OF " + musiques.songs.length;
+
+  updateTimer = setInterval(seekUpdate, 1000);
+  curr_track.addEventListener("ended", nextTrack);
+}
+
+function resetValues() {
+  curr_time.textContent = "00:00";
+  total_duration.textContent = "00:00";
+  seek_slider.value = 0;
+}
+
+// Load the first track in the tracklist
+loadTrack(track_index);
+
+function playpauseTrack() {
+  if (!isPlaying) playTrack();
+  else pauseTrack();
+}
+
+function playTrack() {
+  curr_track.play();
+  isPlaying = true;
+  playpause_btn.innerHTML = '<i class="fa fa-pause-circle fa-5x"></i>';
+}
+
+function pauseTrack() {
+  curr_track.pause();
+  isPlaying = false;
+  playpause_btn.innerHTML = '<i class="fa fa-play-circle fa-5x"></i>';;
+}
+
+function nextTrack() {
+  if (track_index < musiques.songs.length - 1)
+    track_index += 1;
+  else track_index = 0;
+  loadTrack(track_index);
+  playTrack();
+}
+
+function prevTrack() {
+  if (track_index > 0)
+    track_index -= 1;
+  else track_index = musiques.songs.length;
+  loadTrack(track_index);
+  playTrack();
+}
+
+function seekTo() {
+  seekto = curr_track.duration * (seek_slider.value / 100);
+  curr_track.currentTime = seekto;
+}
+
+function setVolume() {
+  curr_track.volume = volume_slider.value / 100;
+}
+
+function seekUpdate() {
+  let seekPosition = 0;
+
+  if (!isNaN(curr_track.duration)) {
+    seekPosition = curr_track.currentTime * (100 / curr_track.duration);
+
+    seek_slider.value = seekPosition;
+
+    let currentMinutes = Math.floor(curr_track.currentTime / 60);
+    let currentSeconds = Math.floor(curr_track.currentTime - currentMinutes * 60);
+    let durationMinutes = Math.floor(curr_track.duration / 60);
+    let durationSeconds = Math.floor(curr_track.duration - durationMinutes * 60);
+
+    if (currentSeconds < 10) { currentSeconds = "0" + currentSeconds; }
+    if (durationSeconds < 10) { durationSeconds = "0" + durationSeconds; }
+    if (currentMinutes < 10) { currentMinutes = "0" + currentMinutes; }
+    if (durationMinutes < 10) { durationMinutes = "0" + durationMinutes; }
+
+    curr_time.textContent = currentMinutes + ":" + currentSeconds;
+    total_duration.textContent = durationMinutes + ":" + durationSeconds;
+  }
+} 
 
  //    function resizePage(){
 	//     var Largeur = $(window).width();
